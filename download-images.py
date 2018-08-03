@@ -1,11 +1,12 @@
 from selenium import webdriver
 import re
 import wget
+import os
 
 driver = webdriver.Firefox()
 driver.get("https://old.reddit.com/r/spaceporn/search?q=nebula&sort=new&restrict_sr=on")
 all_urls = []
-pages = 2
+pages = 10
 
 
 for _ in range(pages):
@@ -18,6 +19,11 @@ for _ in range(pages):
   # next page
   driver.find_element_by_css_selector("a[rel='nofollow next'").click()
 
+try:
+  os.mkdir("images")
+except:
+  pass
+
 for url in all_urls:
-  wget.download(url)
+  wget.download(url, out="images")
 
