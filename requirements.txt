@@ -1,0 +1,4 @@
+certifi==2018.4.16
+selenium==3.14.0
+urllib3==1.23
+wget==3.2
