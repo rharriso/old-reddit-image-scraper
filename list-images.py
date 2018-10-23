@@ -2,18 +2,13 @@ from selenium import webdriver
 import re
 
 driver = webdriver.Firefox()
-# driver.get("https://old.reddit.com/r/spaceporn/search?q=nebula&sort=new&restrict_sr=on")
-driver.get("https://old.reddit.com/r/spaceporn")
+driver.get("https://old.reddit.com/r/spaceporn/search?q=earth&restrict_sr=on")
 all_urls = []
-pages = 1000
+pages = 100
 
 
 for _ in range(pages):
-  # links = driver.find_elements_by_css_selector(".search-link")
-  for button in driver.find_elements_by_css_selector(".expando-button"):
-    button.click()
-
-  links = driver.find_elements_by_css_selector(".media-preview-content .may-blank")
+  links = driver.find_elements_by_css_selector(".search-link")
   urls = [link.get_attribute("href") for link in links
     if re.match(r".*\.(jpg)|(jpeg)|(png)$", link.get_attribute("href"))
   ]
